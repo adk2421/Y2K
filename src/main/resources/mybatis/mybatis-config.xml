@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <typeAlias type="com.wt.member.model.MemberVO" alias="Member" />
+    </typeAliases>
+</configuration>
+
+<!-- xml 파일 생성 시 config 파일인지 mapper 파일인지 명시하는 설정
+
+    config.dtd
+    Location : http://mybatis.org/dtd/mybatis-3-config.dtd
+    Key : //mybatis.org//DTD Config 3.0//EN
+
+    mapper.dtd
+    Location : http://mybatis.org/dtd/mybatis-3-mapper.dtd
+    Key : //mybatis.org/DTD Mapper 3.0//EN
+
+    # DTD(Document Type Definition) : XML 파일이 어떤 구조와 어떤 Element, 어떤 Attributes를 가지는지 정의하는 것
+
+-->

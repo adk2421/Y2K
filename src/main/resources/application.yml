@@ -1,0 +1,25 @@
+server:
+  # PORT 설정
+  port: 8088
+
+spring:
+  # DB 설정
+  datasource:
+    # 기본 설정
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/y2k
+    userName: yyk
+    password: 1234
+
+  devtools:
+    # 저장 시, 자동 리로드
+    livereload:
+      enabled: true
+
+# mybatis 설정
+mybatis:
+  config-location: mybatis/mybatis-config.xml
+  type-aliases-package: com.y2k
+  mapper-locations: classpath:mybatis/mapper/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
