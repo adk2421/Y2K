@@ -21,6 +21,13 @@ repositories {
 	mavenCentral()
 }
 
+// processResources {
+// 	filesMatching('**/application.properties') {
+// 		expand(project.properties)
+// 	}
+// }
+
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -28,27 +35,24 @@ dependencies {
 
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
-	/* Lombok */
+	// lombok
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 
-	/* MySQL */
+	// MySQL
 	runtimeOnly 'com.mysql:mysql-connector-j'
 
-	// /* Security */
+	// security
 	// implementation 'org.springframework.boot:spring-boot-starter-security'
 	// implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
 	// testImplementation 'org.springframework.security:spring-security-test'
 
-	/* Thymeleaf */
+	// thymeleaf
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 
-	/* Mybatis */
+	// mybatis
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.2'
-	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.2'
-
-	/* Log4JDBC */
-	implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
+	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.2'	
 }
 
 tasks.named('test') {

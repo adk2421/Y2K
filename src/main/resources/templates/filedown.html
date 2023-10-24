@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        .real-upload {
+          display: none;
+        }
+
+        .upload {
+          width: 200px;
+          height: 200px;
+          background-color: aliceblue;
+        }
+
+
+        .image-upload {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .button {
+            display: flex;
+            justify-content: center;
+        }
+
+        label {
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        #chooseFile {
+            visibility: hidden;
+        }
+
+        .fileContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .fileInput {
+            display: flex;
+            align-items: center;
+            border-bottom: solid 2px black;
+            width: 60%;
+            height: 30px;
+        }
+
+        #fileName {
+            margin-left: 5px;
+        }
+
+        .buttonContainer {
+            width: 15%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 10px;
+            background-color: black;
+            color: white;
+            border-radius: 30px;
+            padding: 10px;
+            font-size: 0.8em;
+
+            cursor: pointer;
+        }
+
+        .image-show {
+            /* z-index: -1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute; */
+            margin: 0 auto;
+            width: 200px;
+            height: 200px;
+            background-color: aliceblue;
+        }
+
+        .img {
+            /* position: absolute; */
+          width: 300px;
+          height: 300px;
+        }    
+    </style>
+</head>
+<body>
+    <div style="height: 100px;"></div>
+    <div class="mb-3" style="text-align: center;">
+        <label for="regionFstCd">배포이미지 미리보기</label>
+        <input type="file" class="real-upload" id="real-upload" accept="image/*" required multiple style="display: none;">
+        <!-- <div class="upload">+</div> -->
+        <div class="image-show" id="image-show"></div>
+      </div>
+
+      <div class="button">
+          <label for="chooseFile">
+              👉 배포할 이미지를 첨부해주세요 (.jpeg .jpg .wmv) 👈
+          </label>
+      </div>
+      <input type="file" id="chooseFile" name="chooseFile" accept="image/*" onchange="loadFile(this)">
+
+
+      <div class="fileContainer">
+          <div class="fileInput">
+              <p>FILE NAME: </p>
+              <p id="fileName"></p>
+          </div>
+          <div class="buttonContainer">
+              <div class="submitButton" id="submitButton">SUBMIT</div>
+          </div>
+      </div>
+</body>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script type="text/javascript">
+        /*이미지 업로드 & preview 구현*/
+        var submit = document.getElementById('submitButton');
+        submit.onclick = showImage;     //Submit 버튼 클릭시 이미지 보여주기
+
+        function showImage() {
+            var parent =  document.getElementById('image-show');
+            var newImage = document.getElementById('image-show').lastElementChild;
+            var oldImage = document.getElementById('image-show').firstElementChild;
+
+            // console.log(oldImage);
+            // console.log(newImage);
+
+            if(newImage !== oldImage) {
+                parent.removeChild(oldImage);
+            }
+                        
+            newImage.style.visibility = "visible";
+            
+            document.getElementById('image-upload').style.visibility = 'hidden';
+
+            document.getElementById('fileName').textContent = null;     //기존 파일 이름 지우기
+        }
+
+
+        function loadFile(input) {
+            var container = document.getElementById('image-show');
+            container = null;        
+
+            var file = input.files[0];
+
+            var name = document.getElementById('fileName');
+            name.textContent = file.name;
+
+            var newImage = document.createElement("img");
+            newImage.setAttribute("class", 'img');
+
+            newImage.src = URL.createObjectURL(file);
+
+            console.log("file 정보입니다.");
+            console.log(file);
+
+            newImage.style.width = "100%";
+            newImage.style.height = "100%";
+            newImage.style.visibility = "hidden";   //버튼을 누르기 전까지는 이미지 숨기기
+            newImage.style.objectFit = "contain";
+
+            container = document.getElementById('image-show');
+
+            var cnt = container.childElementCount;
+            console.log("갯수");
+            console.log(cnt);
+
+            container.appendChild(newImage);
+        };
+</script>
+</html>

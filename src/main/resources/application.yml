@@ -6,10 +6,8 @@ spring:
   # DB 설정
   datasource:
     # 기본 설정
-    # driver-class-name: com.mysql.cj.jdbc.Driver
-    # url: jdbc:mysql://localhost:3306/y2k?serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true
-    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-    url: jdbc:log4jdbc:mysql://localhost:3306/y2k?serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/y2k
     userName: yyk
     password: 1234
 
@@ -17,6 +15,15 @@ spring:
     # 저장 시, 자동 리로드
     livereload:
       enabled: true
+
+
+  # 파일 전송 설정
+  servlet:
+    multipart:
+      max-request-size: 100MB
+      max-file-size: 30MB
+      location: c:\Temp\upload
+
 
 # mybatis 설정
 mybatis:
