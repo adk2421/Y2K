@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 테스트 Mapper -->
+<mapper namespace="com.y2k.member.MemberMapper">
+
+    <!-- 조회 테스트 -->
+    <insert id="insert" parameterType="com.y2k.member.MemberModel">
+        INSERT INTO MEMBER (
+            member_id,
+            member_pw,
+            member_name,
+            member_phone,
+            create_date
+        ) VALUES (
+            #{memberId},
+			#{memberPw},
+			#{memberName},
+			#{memberPhone},
+			sysdate()
+        );
+    </insert>
+</mapper>

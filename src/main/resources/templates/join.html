@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Y2K</title>
+    <style>
+        @font-face {
+            font-family: 'JeonjuCraftMjB';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/JeonjuCraftMjB.woff2') format('woff2');
+            font-weight: 300;
+            font-style: normal;
+        }
+
+
+        @font-face {
+            font-family: 'SUIT-Regular';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+
+        body {
+            font-family: 'JeonjuCraftMjB';
+            font-style:normal;
+            font-size: 11px;
+        }
+
+
+        .inputbox{
+            font-size: 12px;
+            height: 15px;
+            width: 350px;
+            border: 0;
+            border-bottom: 1px solid #484848;
+            line-height: 1;
+            outline: none;
+        }
+
+
+        .joinBtn1{
+            border-radius: 50px;
+            height: 30px;
+            width: 85px;
+            border: 1px solid #e3e2e2;
+            background-color: #fbfce3;
+            color: #000000;
+            font-weight: 200;
+            font-size: 13px;
+            display: inline-block;
+            font-family: 'SUIT-Regular';
+        }
+
+
+        .joinBtn2{
+            border-radius: 50px;
+            height: 40px;
+            width: 150px;
+            border: 1px solid #e3e2e2;
+            background-color: #fbfce3;
+            color: #000000;
+            font-weight: 200;
+            font-size: 13px;
+            font-family: 'SUIT-Regular';
+            margin: 30px 160px;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <div class="box" style="width: 600px; height:800px; margin:0 auto;">
+    </br></br></br></br>
+    <h1 style="text-align: center;">JOIN</h1></br></br></br></br>
+    <div class="signup field">
+
+        <div class="content" style="margin: 9px 60px;">
+                <div class="row">
+                    <span class="title">ID *</span></br></br>
+                    <input id="memberId" type="email" class="inputbox" autofocus="" placeholder="영문소문자/숫자, 4~16자">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button id="confirmButton" class="joinBtn1">중복 확인</button>
+                    
+                </div></br></br></br></br>
+
+            <div class="row">
+                <span class="title">PASSWORD *</span></br></br>
+                <input id="memberPassword1" type="password" class="inputbox" autocomplete="off" placeholder="영문대소문자/숫자/특수문자 중 2가지 이상 조합, 10~16자">
+            </div></br></br></br></br>
+            <div class="row">
+                <span class="title">PASSWORD CHECK *</span></br></br>
+                <input id="memberPassword2" type="password" class="inputbox" autocomplete="off">
+            </div></br></br></br></br>
+            <div class="row name">
+                <span class="title">NAME *</span></br></br>
+                        <input id="memberName" type="text" class="inputbox">
+            </div></br></br></br></br>
+            <div class="row contact">
+                        <span class="title">MOBILE *</span></br></br>
+                        <input type="tel" style="width:100px;" id="tel1" class="inputbox" maxlength="3" required>
+                        <span class="dash"> - </span>
+                        <input type="tel" style="width:110px;" id="tel2" class="inputbox" maxlength="4" required>
+                        <span class="dash"> - </span>
+                        <input type="tel" style="width:110px;" id="tel3" class="inputbox" maxlength="4" required>
+                </div></br></br></br></br>
+            <div class="btn-wrapper">
+                <button id="signupButton" class="joinBtn2">가입하기</button>
+            </div>
+                </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+function Validation(){
+        var i_RegExp = /^[a-z0-9]{4,16}$/; // id 유효성 검사 정규식
+        var p_RegExp = /^[a-zA-Z0-9]{10,16}$/; // password 유효성 검사 정규식
+        var n_RegExp = /^[가-힣]{2,15}$/; // 이름 유효성검사 정규식
+        
+        var objId = document.getElementById("memberId"); // 아이디
+        var objPwd = document.getElementById("memberPassword1"); // 비밀번호
+        var objPwd2 = document.getElementById("memberPassword2"); // 비밀번호확인
+        var objName = document.getElementById("memberName"); // 이름
+    
+        
+        // ================ ID ================ //
+        if(objId.value==''){
+            alert("ID를 입력해주세요.");
+            return false;
+        }
+        if(!i_RegExp.test(objId.value)){ // 아이디 유효성검사
+            alert("ID는 4~16자의 영문소문자, 숫자로 입력하여 주세요.");
+            return false;
+        }
+        
+        // ================ PASSWORD  ===============//
+        if(objPwd.value==''){ // 비밀번호 입력여부 검사
+            alert("Password를 입력해주세요.");
+            return false;
+        }
+        if(!p_RegExp.test(objPwd.value)){ // 패스워드 유효성검사
+            alert("Password는 10~16자의 영문대소문자, 숫자, 특수문자 중 2가지 이상 조합으로 입력하여 주세요.");
+            return false;
+        }
+        
+        if(objPwd2.value!=objPwd.value){ // 비밀번호와 비밀번호확인이 동일한지 검사
+            alert("비밀번호가 틀립니다. 다시 확인하여 입력해주세요.");
+            return false;
+        }
+        
+        // ================ 이름 ================ //
+        if(objName.value ==''){
+            alert("이름을 입력해주세요.");
+            return false;
+        }
+        if(!n_RegExp.test(objName.value)){
+            alert("특수문자,영어,숫자는 사용할수 없습니다. 한글만 입력하여주세요.");
+            return false;
+        }
+
+    }
+
+// -------------------------
+// 회원가입 버튼
+// -------------------------
+
+
+
+
+    // 회원가입 버튼에 클릭 이벤트 리스너를 추가
+    const signUpButton = document.getElementById('signupButton');
+    signUpButton.addEventListener('click', handleSignUp);
+
+
+    // 회원가입 버튼 클릭 후 처리하는 함수
+    function handleSignUp() {
+        const fields = {
+            id: document.getElementById('memberId'),               // id
+            password: document.getElementById('memberPassword1'),            // password
+            confirmPassword : document.getElementById('memberPassword2'),    // confirmPassword
+            name: document.getElementById('memberName'),                // name
+            phoneNumber1: document.getElementById('tel1'),      // phonenumber
+            phoneNumber2: document.getElementById('tel2'),      // phonenumber
+            phoneNumber3: document.getElementById('tel3')       // phonenumber
+
+        };
+
+        // 미입력시 알럿
+        const errorMessages = {
+            id: '아이디을 입력해주세요.',
+            password: '비밀번호를 입력해주세요.',
+            confirmPassword : '비밀번호를 한번더 입력해주세요.',
+            name: '이름을 입력해주세요.',
+            phoneNumber1: '핸드폰 번호를 입력해주세요.',
+            phoneNumber2: '핸드폰 번호를 입력해주세요.',
+            phoneNumber3: '핸드폰 번호를 입력해주세요.'
+        };
+
+
+        // 모든 인풋값 맞지 않을 시 알럿
+        for (const field in fields) {
+            if (!fields[field].value) {
+                alert(errorMessages[field]);
+                return;
+            }
+        }
+
+        // 회원가입 데이터 값
+        const signUpData = {
+            memberId: fields.id.value,
+            memberPw: fields.password.value,
+            memberName: fields.name.value,
+            memberPhone: `${fields.phoneNumber1.value}${fields.phoneNumber2.value}${fields.phoneNumber3.value}`
+        };
+        
+        console.log('SignUp data:', signUpData);
+
+        // 서버로 회원가입 정보 전송
+        sendSignUpDataToServer(signUpData);
+    }
+
+// 서버로 회원가입 정보 전송하는 함수
+function sendSignUpDataToServer(data) {
+    // 서버로 전송할 URL 설정
+    const url = '/member/join'; // 해당 URL로 수정
+
+    // 회원가입 ajax
+    $.ajax({
+        type: 'POST',
+        url: '/member/join',
+        data: JSON.stringify(data),
+        contentType: 'application/json',
+        success: function (response) {
+            if (response === 'SUCC') {
+                // 요청이 성공적으로 처리된 경우
+                alert('회원가입이 완료되었습니다.');
+                window.location.href = '/login';
+            } else {
+                // 오류 발생
+                alert('회원가입 중 오류가 발생하였습니다. 다시 시도해주세요.');
+            }
+        },
+        error: function (error) {
+            // 요청이 실패한 경우
+            console.log('Error:', error);
+            alert('회원가입 중 오류가 발생하였습니다. 다시 시도해주세요.');
+        }
+    });
+}
+
+
+
+
+</script>
+</html>

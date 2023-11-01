@@ -1,0 +1,71 @@
+@font-face {
+    font-family: 'JeonjuCraftMjB';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/JeonjuCraftMjB.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'SUIT-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+.content{
+    margin: 9px 100px;
+}
+
+
+.inputbox{
+    font-size: 12px;
+    height: 15px;
+    width: 350px;
+    border: 0;
+    border-bottom: 1px solid #484848;
+    line-height: 1;
+    outline: none;
+}
+
+
+.row1{
+    margin: 5px 100px;
+}
+
+
+.joinBtn2{
+    border-radius: 50px;
+    height: 40px;
+    width: 250px;
+    border: 1px solid #e3e2e2;
+    background-color: #fbfce3;
+    color: #000000;
+    font-weight: 200;
+    font-size: 13px;
+    font-family: 'SUIT-Regular';
+    margin: 5px 150px;
+}
+
+
+.basic{
+    width: 600px;
+    height:800px;
+    margin:0 auto;
+    font-family: 'JeonjuCraftMjB';
+    font-style:normal;
+    font-size: 11px;
+}
+
+
+.idSave{
+    font-family: 'SUIT-Regular';
+    font-size: 12px;
+}
+
+
+.loginSucc{
+    font-family: 'SUIT-Regular';
+    font-size: 20px;
+}

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Y2K</title>
+    <style>
+        @font-face {
+            font-family: 'JeonjuCraftMjB';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/JeonjuCraftMjB.woff2') format('woff2');
+            font-weight: 300;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'SUIT-Regular';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        .inputbox{
+            font-size: 12px;
+            height: 15px;
+            width: 350px;
+            border: 0;
+            border-bottom: 1px solid #484848;
+            line-height: 1;
+            outline: none;
+        }
+
+        .joinBtn2{
+            border-radius: 50px;
+            height: 40px;
+            width: 250px;
+            border: 1px solid #e3e2e2;
+            background-color: #fbfce3;
+            color: #000000;
+            font-weight: 200;
+            font-size: 13px;
+            font-family: 'SUIT-Regular';
+            margin: 5px 150px;
+        }
+
+        .basic{
+            width: 600px;
+            height:800px;
+            margin:0 auto;
+            font-family: 'JeonjuCraftMjB';
+            font-style:normal;
+            font-size: 11px;
+        }
+
+        .idSave{
+            font-family: 'SUIT-Regular';
+            font-size: 12px;
+        }
+
+        .loginSucc{
+            font-family: 'SUIT-Regular';
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="basic">
+        <div class="box">
+            </br></br></br></br></br></br>
+            <h1 style="text-align: center;">LOGIN</h1></br></br></br></br>
+
+            <div class="signup field">
+                <div class="content" style="margin: 9px 100px;">
+                    <div class="row">
+                        <span class="title">ID *</span></br></br>
+                        <input id="customerEmail" type="email" class="inputbox" autofocus="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </div></br></br></br></br>
+
+                    <div class="row">
+                        <span class="title">PASSWORD *</span></br></br>
+                        <input id="customerPassword1" type="password" class="inputbox" autocomplete="off">
+                    </div></br>
+                </div>
+            </div>
+        </div>
+
+                    <div class="row1" style=" margin: 5px 100px;">
+                        <input id="member_check_save_id0" class="idSave" type="checkbox">&nbsp;&nbsp;<span class="idSave">아이디 저장</span>
+                    </div></br></br></br>
+
+                    <div class="btn-wrapper">
+                        <button id="loginButton" class="joinBtn2">로그인</button></br></br>
+                        <button id="signupButton" class="joinBtn2">회원가입</button>
+                    </div>
+    </div>
+
+
+</body>
+
+<script>
+    function Validation(){
+        var i_RegExp = /^[a-z0-9]{4,16}$/; // id 유효성 검사 정규식
+        var p_RegExp = /^[a-zA-Z0-9]{10,16}$/; // password 유효성 검사 정규식
+        
+        var objId = document.getElementById("memberId"); // 아이디
+        var objPwd = document.getElementById("memberPassword1"); // 비밀번호
+    
+        
+        // ================ ID ================ //
+        if(objId.value==''){
+            alert("ID를 입력해주세요.");
+            return false;
+        }
+        if(!i_RegExp.test(objId.value)){ // 아이디 유효성검사
+            alert("ID는 4~16자의 영문소문자, 숫자로 입력하여 주세요.");
+            return false;
+        }
+        
+        // ================ PASSWORD  ===============//
+        if(objPwd.value==''){ // 비밀번호 입력여부 검사
+            alert("Password를 입력해주세요.");
+            return false;
+        }
+        if(!p_RegExp.test(objPwd.value)){ // 패스워드 유효성검사
+            alert("Password는 10~16자의 영문대소문자, 숫자, 특수문자 중 2가지 이상 조합으로 입력하여 주세요.");
+            return false;
+        }
+    }
+        
+</script>
+</html>
