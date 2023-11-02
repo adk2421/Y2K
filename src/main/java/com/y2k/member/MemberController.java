@@ -7,10 +7,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.Hidden;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
+@Tag(name = "회원가입 API", description = "Swagger 테스트용 API")
 @RestController
 @RequestMapping("/member")
 @RequiredArgsConstructor
@@ -34,6 +39,8 @@ public class MemberController {
      *
      * return -> FAIL ( 오류 ) / 성공 시 SUCC
      */
+    @Operation(summary = "회원가입", description = "회원DB에 회원 객체를 INSERT 합니다.")
+    @Parameter(name = "memberModel", description = "회원 객체")
     @RequestMapping(value = "/join", method = RequestMethod.POST)
     @ResponseBody
     public String JoinMember(@RequestBody MemberModel memberModel) throws Exception {
@@ -47,7 +54,7 @@ public class MemberController {
         //     e.printStackTrace();
         //     return "FAIL";
         // }
-        return "SUCC " + result;
+        return "SUCC";
     }
 
 
@@ -62,6 +69,7 @@ public class MemberController {
      *
      * return -> FAIL ( 오류 ) / 성공 시 SUCC , 세션에 데이터 저장
      */
+    @Hidden
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
     public String loginMember(@RequestBody MemberModel memberModel, HttpSession session) throws Exception {
@@ -79,6 +87,7 @@ public class MemberController {
 
     }
 
+    @Hidden
     @RequestMapping("test")
     @ResponseBody
     public String test() throws Exception {

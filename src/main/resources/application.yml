@@ -6,6 +6,8 @@ spring:
   # DB 설정
   datasource:
     # 기본 설정
+    # driver-class-name: com.mysql.cj.jdbc.Driver
+    # url: jdbc:mysql://localhost:3306/y2k?serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true
     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
     url: jdbc:log4jdbc:mysql://localhost:3306/y2k?serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true
     userName: yyk
@@ -32,3 +34,31 @@ mybatis:
   mapper-locations: classpath:mybatis/mapper/**/*.xml
   configuration:
     map-underscore-to-camel-case: true
+
+
+# Swagger 설정
+springdoc:
+  packages-to-scan: com.y2k.member                             # swagger 적용을 위해 스캔할 패키지를 지정
+  default-consumes-media-type: application/json;charset=UTF-8  # 요청과 응답에 대한 기본 mediaType값을 지정
+  default-produces-media-type: application/json;charset=UTF-8  # 요청과 응답에 대한 기본 mediaType값을 지정
+  api-docs:
+    enabled: true               # swagger 사용 여부 > default : true
+    path: /api-docs             # http://localhost:{port}/api-docs 접속 으로 swagger 사용 가능
+  swagger-ui:
+    path: /swagger-ui.html      # swagger 접속할 path 설정 > swagger url : localhost:{port}/swagger-ui/index.html
+    groups-order: ASC           # group 정렬 오름차순
+    tags-sorter: alpha          # tag 정렬 알파벳순
+    operations-sorter: alpha    # 태그 내 각 api 정렬 알파벳순
+    disable-swagger-default-url: true  # swagger-default-url인 petstore html 문서 비활성화 여부
+    display-request-duration: true   # "Try it out" 실행 후 api 실행시간 ( request duration(요청 소요 시간) ) 표시(milliseconds)
+
+
+
+# sftp 설정
+# sftp:
+#   password:
+#   port: '22'
+#   host: 127.0.0.1
+#   channelTimeout: '15000'
+#   sessionTimeout: '15000'
+#   username:    
