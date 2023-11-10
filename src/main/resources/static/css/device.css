@@ -1,0 +1,30 @@
+body {
+    font-size: 14px;
+}
+
+table {
+    text-align: center;
+    border: solid 1px;
+}
+
+th {
+    width: 80px;
+    height: 30px;
+    padding: 2px;
+    border: solid 1px black;
+}
+
+td {
+    width: 80px;
+    height: 30px;
+    padding: 2px;
+    border: solid 1px black;
+}
+
+td.on {
+    color: green;
+}
+
+td.off {
+    color: red;
+}

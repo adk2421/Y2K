@@ -12,4 +12,28 @@
             test
     </select>
 
+    <!-- 회원조회 테스트 -->
+    <select id="selectMember" parameterType="com.y2k.member.MemberModel" resultType="com.y2k.member.MemberModel">
+        SELECT
+            *
+        FROM
+            member
+        WHERE
+            member_id = #{memberId}
+        AND
+            member_pw = #{memberPw}
+    </select>
+
+    <!-- 토큰 삽입 테스트 -->
+    <update id="insertToken" parameterType="com.y2k.member.MemberModel">
+        UPDATE 
+            member
+        SET
+            cert_token = #{certToken}
+        WHERE
+            member_id = #{memberId}
+        AND
+            member_pw = #{memberPw}
+    </update>
+
 </mapper>

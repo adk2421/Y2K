@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 기기 Mapper -->
+<mapper namespace="com.y2k.device.DeviceMapper">
+
+    <!-- 기기 리스트 조회 -->
+    <select id="getDvcList" parameterType="com.y2k.device.DeviceModel" resultType="com.y2k.device.DeviceModel">
+        SELECT
+            *
+        FROM
+            device
+        WHERE
+            dvc_use_yn = 'Y'
+        ORDER BY
+            dvc_name
+    </select>
+
+    <!-- 기기 조회 -->
+    <select id="getDvc" parameterType="String" resultType="com.y2k.device.DeviceModel">
+        SELECT
+            *
+        FROM
+            device
+        WHERE
+            dvc_use_yn = 'Y'
+        AND
+            dvc_id = '${dvcId}'
+    </select>
+
+</mapper>
