@@ -25,6 +25,9 @@ public class MemberModel {
     @Schema(name = "createDate", description = "등록일", example = "2023-11-01")
     private String createDate;
 
+    @Schema(name = "certToken", description = "인증토큰", example = "eyJ0eXAiOiJ...")
+    private String certToken;
+
     public int getCount() {
         return 0;
     }
@@ -32,7 +35,5 @@ public class MemberModel {
     public Object getMemberNo() {
         return null;
     }
-
-
     
 }
