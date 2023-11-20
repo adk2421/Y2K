@@ -1,21 +1,21 @@
 package com.y2k.test;
 
 import java.util.List;
+import java.io.IOException;
 
 import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.core.io.InputStreamResource;
-import org.springframework.core.io.UrlResource;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.y2k.member.MemberModel;
 
 import jakarta.annotation.Resource;
 import lombok.RequiredArgsConstructor;
 
-@EnableAsync
 @Repository("testService")
 @RequiredArgsConstructor
 public class TestService {
@@ -48,16 +48,21 @@ public class TestService {
         return sqlSessionTemplate.selectOne(path + "getToken", token);
     }
 
-    public String syncTest(int num) {
-        return "exexute : " + num;
-    }
-
-    @Async
-    public void asyncTest(int num) {
-        System.out.println("exexute : " + num);
-    }
-
     public ResponseEntity<Resource> fileDownload() {
         return null;
+    }
+
+    public MultiValueMap<String, Object> getMultivalueMap(List<MultipartFile> files) throws IOException {
+        MultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
+        for(MultipartFile file : files) {
+            ByteArrayResource contentsAsResource = new ByteArrayResource(file.getBytes()){
+                @Override
+                public String getFilename(){
+                    return file.getOriginalFilename();
+                }
+            };
+            map.add("files", contentsAsResource);
+        }
+        return map;
     }
 }

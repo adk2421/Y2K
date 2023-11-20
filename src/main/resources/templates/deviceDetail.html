@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Y2K</title>
+
+    <link rel="stylesheet" href="css/device.css">
+</head>
+<body>
+    <h1>기기상세</h1>
+    <table class="table">
+        <tr>
+            <th>
+                기기종류
+            </th>
+            <th>
+                기기 ID
+            </th>
+            <th>
+                기기이름
+            </th>
+            <th>
+                사용지점
+            </th>
+            <th>
+                기기상태
+            </th>
+            <th>
+                기기마지막접근시간
+            </th>
+        </tr>
+        <!-- 테스트 데이터 -->
+        <tr>
+            <td>
+                KIOSK
+            </td>
+            <td>
+                KIOSK-30
+            </td>
+            <td>
+                용산
+            </td>
+            <td class="on">
+                ●
+            </td>
+        </tr>
+        <tr>
+            <td>
+                DD
+            </td>
+            <td>
+                DD-20
+            </td>
+            <td>
+                동대문
+            </td>
+            <td class="off">
+                ●
+            </td>
+        </tr>
+        <!-- 실제 데이터 -->
+        <tr th:each="device : ${dvcList}">
+            <td th:text="${device.dvcType}"></td>
+            <td><a th:text="${device.dvcName}"></a></td>
+            <td th:text="${device.dvcBrc}"></td>
+            <td th:if="${device.dvcStatus == 'ON'}" class="on">●</td>
+            <td th:if="${device.dvcStatus == 'OFF'}" class="off">●</td>
+        </tr>
+    </table>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/device.js"></script>
+<script>
+    
+</script>
+</html>

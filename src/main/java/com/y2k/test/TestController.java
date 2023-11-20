@@ -1,19 +1,25 @@
 package com.y2k.test;
 
 import java.util.List;
-import java.util.ArrayList;
+import java.util.concurrent.CompletableFuture;
 import java.net.MalformedURLException;
 import java.nio.file.Paths;
+import java.io.IOException;
 
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.JSch;
@@ -104,26 +110,32 @@ public class TestController {
         return jwtTokenProvider.decodeToken(token);
     }
 
-    @GetMapping("syncTest")
-    public List<String> syncTest() {
-        List<String> list = new ArrayList<>();
+    /**
+     * 다중 파일 전송
+     * @param files
+     * @return
+     * @throws IOException
+     */
+    @ResponseBody
+    @PostMapping("restFileTrans")
+    public CompletableFuture<String> restFileTrans(List<MultipartFile> files) throws IOException {
+        String url = "http://localhost:8088" + "/dvcFileTrans";
 
-        for (int i = 0; i < 15; i++) {
-            list.add(testService.syncTest(i));
-        }
+        System.out.println("**** Number of files : "+ files.size());
 
-        return list;
+        MultiValueMap<String, Object> map = testService.getMultivalueMap(files);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+        HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(map, headers);
+
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<String> response = restTemplate.postForEntity(url, requestEntity, String.class);
+        System.out.println("response status: " + response.getStatusCode());
+        System.out.println("response body: " + response.getBody());
+
+        return CompletableFuture.completedFuture("success");
     }
-
-    @GetMapping("asyncTest")
-    public String asyncTest() {
-        for (int i = 0; i < 15; i++) {
-            testService.asyncTest(i);
-        }
-
-        return "test 성공";
-    }
-
 
     /**
      * SFTP 파일업로드 1

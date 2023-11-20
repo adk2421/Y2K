@@ -20,7 +20,13 @@ public class DeviceModel {
     private String dvcBrc;
 
     // 기기 상태
-    private String dvcStatus;
+    private int dvcStts;
+
+    // 기기 업데이트 상태
+    private int dvcUpdtStts;
+
+    // 기기 OP 상태
+    private int dvcOpStts;
 
     // 기기 사용 유무
     private String dvcUseYn;

@@ -1,0 +1,34 @@
+<th:block th:fragment="deviceModifyModal">
+    <!-- Modal -->
+    <div class="modal fade" id="deviceModifyModal" data-bs-backdrop="static" data-bs-keyboard="true" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lga modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="header-area">
+                        <h2 class="title">기기수정</h2>
+                    </div>
+                    <div class="content-area">
+                        <div class="input-group mb-1">
+                            <span class="input-group-text w-23">기기종류</span>
+                            <select class="form-select" id="dvcTypeSelect" disabled>
+                                <option value="KIOSK"selected>KIOSK</option>
+                                <option value="DD">Digital Desk</option>
+                            </select>
+                        </div>
+                        <p class="caution">*기기종류는 수정할 수 없습니다.</p>
+                        <div class="input-group mt-1">
+                            <span class="input-group-text w-23">지점명</span>
+                            <input type="text" class="form-control" id="dvcBrcModifyInput" aria-label="dvcBrc" aria-describedby="deviceBranch-Input">
+                        </div>
+                    </div>
+                    <div class="footer-area">
+                        <div class="ok-button col-centered">
+                            <button type="button" class="btn btn-warning" id="btnModify">수정</button>
+                            <button type="button" class="btn btn-outline-primary" id="btnCancel" data-bs-dismiss="modal">취소</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>

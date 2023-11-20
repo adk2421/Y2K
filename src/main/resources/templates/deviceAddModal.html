@@ -1,0 +1,33 @@
+<th:block th:fragment="deviceAddModal">
+    <!-- Modal -->
+    <div class="modal fade" id="deviceAddModal" data-bs-backdrop="static" data-bs-keyboard="true" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lga modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="header-area">
+                        <h2 class="title">기기추가</h2>
+                    </div>
+                    <div class="content-area">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text w-23">기기종류</span>
+                            <select class="form-select" id="dvcTypeSelect">
+                                <option value="KIOSK"selected>KIOSK</option>
+                                <option value="DD">Digital Desk</option>
+                            </select>
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text w-23">지점명</span>
+                            <input type="text" class="form-control" id="dvcBrcAddInput" aria-label="dvcBrc" aria-describedby="deviceBranch-Input">
+                        </div>
+                    </div>
+                    <div class="footer-area">
+                        <div class="ok-button col-centered">
+                            <button type="button" class="btn btn-primary" id="btnAdd">추가</button>
+                            <button type="button" class="btn btn-outline-primary" id="btnCancel" data-bs-dismiss="modal">취소</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>
