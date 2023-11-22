@@ -22,9 +22,9 @@ spring:
   # 파일 전송 설정
   servlet:
     multipart:
-      max-request-size: 100MB
-      max-file-size: 30MB
-      location: c:\Temp\upload
+      max-request-size: 3000MB
+      max-file-size: 3000MB
+      location: D:\fileFolderD
 
 
 # mybatis 설정
